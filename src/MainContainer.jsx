@@ -11,7 +11,7 @@ export default function MainContainer({ step, setStep, data, updateData }) {
     updateData({ topic });
     setStep(2); 
     try {
-      const res = await fetch('http://localhost:5001/api/research-summary', {
+      const res = await fetch('https://vinegarbox.work/api/research-summary', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ topic })
@@ -26,7 +26,7 @@ export default function MainContainer({ step, setStep, data, updateData }) {
   // 🔥 [Step 2 전용] 대화를 통한 리포트 실시간 수정 (추가된 부분)
   const handleStep2ChatUpdate = async (message) => {
     try {
-      const res = await fetch('http://localhost:5001/api/refine-research', {
+      const res = await fetch('https://vinegarbox.work/api/refine-research', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         // 현재 데이터(data)와 사용자의 수정 요청 메시지(message)를 함께 전송
@@ -46,7 +46,7 @@ export default function MainContainer({ step, setStep, data, updateData }) {
   const handleStep3Submit = async (tableRows) => {
     setStep(4);
     try {
-      const res = await fetch('http://localhost:5001/api/analyze-results', {
+      const res = await fetch('https://vinegarbox.work/api/analyze-results', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ tableData: tableRows, topic: data.topic })
